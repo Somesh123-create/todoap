@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+</br></br>
+<h4 align='center'>Update Task</h4>
+<div class='container'>
+  <form method='post'>
+    {% csrf_token %}
+    <div class="row">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Enter your task here.." id="first_name" type="text" name="task_name" class="validate" value="{{ task.task_name }}">
+              <label for="first_name">Task Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1"  class="materialize-textarea" name="description">{{ task.description }}</textarea>
+              <label for="textarea1">Description</label>
+            </div>
+          </div>
+          {% if task.completed == False %}
+            <p>
+              <label>
+                <input type="checkbox" class="filled-in" name='completed' id="id_completed" />
+                <span>Complete Task</span>
+              </label for="id_completed">
+            </p>
+            <button class="btn waves-effect waves-light">Update
+                <i class="material-icons right">send</i>
+            </button>
+          {% else %}
+          <button class="btn waves-effect waves-light">Reactivate
+              <i class="material-icons right">send</i>
+          </button>
+          {% endif %}
+  </form>
+</div>
+
+
+
+{% endblock %}

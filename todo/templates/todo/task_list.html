@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+</br>
+
+  <div class='container'>
+    <div align='center'>
+      <a id="scale-demo" href="{% url 'create_task' %}" class="btn-floating btn-large scale-transition">
+        <i class="material-icons">add_task</i>
+      </a>
+    </div>
+  </div>
+</div>
+</br>
+<div class='container'>
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">filter_drama</i>
+        My Task's List..
+        <span class="new badge" data-badge-caption="Task Pending">{{ remain_count }}</span>
+        <span class="new badge red" data-badge-caption="Completed Task">{{ completed_count }}</span>
+      </div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    </li>
+  </ul>
+</div>
+
+
+  <div class='container'>
+    <ul class="collection">
+        {% for list in task %}
+          <li class="collection-item avatar">
+            <i class="material-icons circle green">insert_chart</i>
+            {% if list.completed == True %}
+              <a href='{% url 'detail_task' list.pk %}'><span class="title"><strong><del>{{list.task_name}}</del><i class="material-icons">done</i></strong></span></a>
+            {% else %}
+              <a href='{% url 'detail_task' list.pk %}'><span class="title"><strong>{{list.task_name}}</strong></span></a>
+            {% endif %}
+              <p><a href="{% url 'update_task' list.pk %}"><i class="material-icons">published_with_changes</i></a></p>
+              <p>Category: {{list.category_name}} <br>
+                 Task Added: {{list.task_date}}
+              </p>
+                <a href="{% url 'delete_task' list.pk %}" class="secondary-content"><i class="material-icons">delete</i></a>
+            </li>
+        {% endfor %}
+      </ul>
+  </div>
+</div>
+
+
+
+{% endblock %}

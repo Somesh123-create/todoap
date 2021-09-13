@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+</br></br>
+<h4 align='center'>Create Task</h4>
+<div class='container'>
+  <form method='post'>
+    {% csrf_token %}
+      {{ form.as_p }}
+    <button class="btn waves-effect waves-light">Add Task
+        <i class="material-icons right">send</i>
+    </button>
+    </form>
+</div>
+
+{% endblock %}
